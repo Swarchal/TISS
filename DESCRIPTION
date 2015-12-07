@@ -1,0 +1,8 @@
+Package: TISS
+Title: Titration Invariant Similarity Score
+Version: 0.0.0.1
+Authors@R: person("Scott", "Warchal", email = "Swarchal@sms.ed.ac.uk", role = c("aut", "cre"))
+Description: R implementation of Perlman et al's titration invariant similarity score (TISS). Used to compare compounds in high-content screens while accounting for differing potencies.
+Depends: R (>= 3.2.1)
+License: MIT
+LazyData: true
