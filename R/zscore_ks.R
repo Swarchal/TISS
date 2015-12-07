@@ -10,5 +10,6 @@
 
 zscore_ks <- function(x){
     out <- scale(x)
+    attributes(out) <- NULL
     return(out)
 }
