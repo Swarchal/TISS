@@ -24,5 +24,6 @@ be positive.
 \examples{
 data(iris)
 ks_test(iris[,1], iris[,2])
+
 }
 
