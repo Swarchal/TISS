@@ -23,10 +23,10 @@ ks_test <- function(f, g){
     bin_edges <- sort(c(f, g))
     
     bin_f <- hist(f, breaks = bin_edges, plot = FALSE)$counts
-    bin_f <- hist(g, breaks = bin_edges, plot = FALSE)$counts
+    bin_g <- hist(g, breaks = bin_edges, plot = FALSE)$counts
     
-    sum_counts_f <- cumsum(hist_f) / sum(hist_f)
-    sum_counts_g <- cumsum(hist_g) / sum(hist_g)
+    sum_counts_f <- cumsum(bin_f) / sum(bin_f)
+    sum_counts_g <- cumsum(bin_g) / sum(bin_g)
     
     sample_ecdf_f <- sum_counts_f[1:length(sum_counts_f) - 1]
     sample_ecdf_g <- sum_counts_g[1:length(sum_counts_g) - 1]
