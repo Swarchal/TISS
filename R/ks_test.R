@@ -20,14 +20,6 @@
 
 ks_test <- function(f, g){
     
-    # check inputs
-    if (!is.matrix(f) && !is.data.frame(f)){
-        stop("f needs to be a dataframe of a matrix")
-    }
-    if (!is.matrix(g) && !is.data.frame(g)){
-        stop("g needs to be a dataframe of a matrix")
-    }
-    
     bin_edges <- sort(c(f, g))
     
     bin_f <- hist(f, breaks = bin_edges, plot = FALSE)$counts
