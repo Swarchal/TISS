@@ -20,6 +20,10 @@ ks_cols <- function(f, g){
         stop("g needs to be a dataframe of a matrix")
     }
     
+    if (ncols(f) != ncols(g)){
+        stop("Different number of columns in f and g")
+    }
+    
     tmp <- vector(length = ncol(g))
     for (i in 1:ncol(df_r)){
         tmp[i] <- ks_test(f[, i], g[, i])
