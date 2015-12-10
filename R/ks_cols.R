@@ -12,18 +12,18 @@
 
 ks_cols <- function(f, g){
     
-    # check inputs
-    if (!is.matrix(f) && !is.data.frame(f)){
-        stop("f needs to be a dataframe of a matrix")
-    }
-    if (!is.matrix(g) && !is.data.frame(g)){
-        stop("g needs to be a dataframe of a matrix")
-    }
+#    # check inputs
+#     if (!is.matrix(f) && !is.data.frame(f)){
+#         stop("f needs to be a dataframe of a matrix")
+#     }
+#     if (!is.matrix(g) && !is.data.frame(g)){
+#         stop("g needs to be a dataframe of a matrix")
+#     }
     
-    if (ncols(f) != ncols(g)){
-        stop("Different number of columns in f and g")
-    }
-    
+#     if (ncol(f) != ncol(g)){
+#         stop("Different number of columns in f and g")
+#     }
+#     
     tmp <- vector(length = ncol(g))
     for (i in 1:ncol(df_r)){
         tmp[i] <- ks_test(f[, i], g[, i])
