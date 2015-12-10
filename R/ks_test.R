@@ -32,7 +32,7 @@ ks_test <- function(f, g){
         sample_ecdf_f <- sum_counts_f[1:length(sum_counts_f) - 1]
         sample_ecdf_g <- sum_counts_g[1:length(sum_counts_g) - 1]
         
-        upDeltaCDF   <- sample_ecdf_g - sample_ecdf_g
+        upDeltaCDF   <- sample_ecdf_f - sample_ecdf_g
         downDeltaCDF <- sample_ecdf_g - sample_ecdf_f
         
         up <- max(upDeltaCDF)
