@@ -25,7 +25,7 @@ ks_cols <- function(f, g){
 #     }
 #     
     tmp <- vector(length = ncol(g))
-    for (i in 1:ncol(df_r)){
+    for (i in 1:ncol(g)){
         tmp[i] <- ks_test(f[, i], g[, i])
     }
     return(tmp)
