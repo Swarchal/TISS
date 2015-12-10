@@ -20,27 +20,32 @@
 
 ks_test <- function(f, g){
     
-    bin_edges <- sort(c(f, g))
+    if (length(f) && length(g) > 0){
+        bin_edges <- sort(c(f, g))
+        
+        bin_f <- hist(f, breaks = bin_edges, plot = FALSE)$counts
+        bin_g <- hist(g, breaks = bin_edges, plot = FALSE)$counts
+        
+        sum_counts_f <- cumsum(bin_f) / sum(bin_f)
+        sum_counts_g <- cumsum(bin_g) / sum(bin_g)
+        
+        sample_ecdf_f <- sum_counts_f[1:length(sum_counts_f) - 1]
+        sample_ecdf_g <- sum_counts_g[1:length(sum_counts_g) - 1]
+        
+        upDeltaCDF   <- sample_ecdf_g - sample_ecdf_g
+        downDeltaCDF <- sample_ecdf_g - sample_ecdf_f
+        
+        up <- max(upDeltaCDF)
+        down <- max(downDeltaCDF)
+        
+        if (up >= down){
+            D <- up
+        } else if (up < down){
+            D <- - down
+        }
+    } else D <- 0
     
-    bin_f <- hist(f, breaks = bin_edges, plot = FALSE)$counts
-    bin_g <- hist(g, breaks = bin_edges, plot = FALSE)$counts
-    
-    sum_counts_f <- cumsum(bin_f) / sum(bin_f)
-    sum_counts_g <- cumsum(bin_g) / sum(bin_g)
-    
-    sample_ecdf_f <- sum_counts_f[1:length(sum_counts_f) - 1]
-    sample_ecdf_g <- sum_counts_g[1:length(sum_counts_g) - 1]
-    
-    upDeltaCDF   <- sample_ecdf_g - sample_ecdf_g
-    downDeltaCDF <- sample_ecdf_g - sample_ecdf_f
-    
-    up <- max(upDeltaCDF)
-    down <- max(downDeltaCDF)
-    
-    if (up >= down){
-        D <- up
-    } else D <- - down
     
     return(D)
-
+    
 }
