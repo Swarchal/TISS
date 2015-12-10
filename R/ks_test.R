@@ -45,7 +45,5 @@ ks_test <- function(f, g){
         }
     } else D <- 0
     
-    
     return(D)
-    
 }

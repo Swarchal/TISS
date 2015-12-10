@@ -10,16 +10,13 @@
 #' @param cmpd list
 #' @param neg dataframe or matrix
 #' @param vectorise boolean, whether to return a vector per compound
-#' @param z_score boolean, whether to normalise compound
+#'
+#' @export
 
-calculate_d <- function(cmpd, neg, vectorise = TRUE, z_score = FALSE){
+calculate_d <- function(cmpd, neg, vectorise = TRUE){
     # check input    
     if (!is.data.frame(neg)) stop("neg needs to be a dataframe")
     if (!is.list(cmpd)) stop("cmpd needs to be a list of dataframes")
-    
-    if (vectorise == FALSE & z_score == TRUE){
-        stop(paste("Cannot normalise compound vectors if 'vectorise is'", vectorise))
-    }
     
     # function to check if columns are numeric
     col_numeric <- function(x) sapply(x, is.numeric)
@@ -33,16 +30,16 @@ calculate_d <- function(cmpd, neg, vectorise = TRUE, z_score = FALSE){
     # check number of numeric columns
     total_ncols <- sum(Reduce('+', lapply(cmpd, ncol)))
     numeric_ncols <- sum(Reduce('+', lapply(cmpd, col_numeric)))
-    if (total_ncols < numeric_ncol) {
+    if (total_ncols < numeric_ncols) {
         stop("All columns need to be numeric")
     }
     
     # should give a vector of values for each compound-concentration
-        # ks_test across pairs of columns in two dataframes
-        # holding the standard dataframe constant as neg
-    D_values <- lapply(cmpd, ks_cols, g = neg)
+    D_values <- sapply(cmpd, function(x) lapply(x, ks_cols, g = neg))
     
-    # TODO: concatenate the concentration values for each compound
-        # leaving a D-vector for each compound
-        # - check if sapply gives a more sensible output than lapply
+    if (vectorise == TRUE){
+        D_values <- apply(d_out, 2, unlist)
+    }
+    
+    return(D_values)
 }
