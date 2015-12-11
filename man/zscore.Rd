@@ -13,6 +13,7 @@ zscore(x)
 out Vector of z-scored values
 }
 \description{
+Used within \code{calculate_d}
 Scale and center the D statistic produced by \code{ks_test}
 }
 
