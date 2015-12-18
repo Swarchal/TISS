@@ -70,6 +70,10 @@ trim_cor <- function(x, y, n, p){
   names(cor_measurements)[1:n] <- paste("-", n:1)
   names(cor_measurements)[n + 1] <- 0
   names(cor_measurements)[(n + 2):length(cor_measurements)] <- paste("+", 1:n)
+
+  # create class for plot_trim_cor
+  class(cor_measurements) <- "cor_vector"
+  
   return(cor_measurements)
   
 }
