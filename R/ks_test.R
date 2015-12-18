@@ -1,10 +1,10 @@
 #' Signed Kolmogorov-Smirnov Test
 #' 
 #' A two-sample Kolmogorov-Smirnov test that also returns the direction of the
-#' calculated supremum relative to the distribution g. For example, if the values
-#' of g are smaller than g, and the CDF of f is shift to the left of g, then the
-#' D statistic will be negative, if it is shift to the right of g, then it will
-#' be positive.
+#' calculated supremum relative to the distribution g. Used within \code{ks_cols}
+#' For example, if the values of g are smaller than g, and the CDF of f is
+#' shift to the left of g, then the D statistic will be negative, if it is
+#' shift to the right of g, then it will be positive.
 #' 
 #' @param f Numerical vector to be compared to g
 #' @param g Numerical vector, reference or control
