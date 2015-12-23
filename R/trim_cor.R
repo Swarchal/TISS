@@ -57,7 +57,7 @@ trim_cor <- function(x, y, n, p){
   cor_measurements[1:n] <- rev(cor_measurements[1:n])
   
   # cor of unshifted x and y
-  cor_measurements[n+1] <- cor(x, y)
+  cor_measurements[n + 1] <- cor(x, y)
   
   # right shift from 1 to n
   for (i in 1:n){
