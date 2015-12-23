@@ -19,7 +19,7 @@
 #' # order values (more obvious correlation shifts)
 #' df <- apply(df, 2, sort)
 #' out <- trim_cor(df[,1], df[,2], n = 5, p = 5)
-
+#'
 #' max_shift(out)
 #' max_shift(out, value = TRUE)
 
