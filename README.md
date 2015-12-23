@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Swarchal/TISS.svg?branch=master)](https://travis-ci.org/Swarchal/TISS)[![Build Status](https://travis-ci.org/Swarchal/TISS.svg?branch=master)](https://travis-ci.org/Swarchal/TISS)
+[![Build Status](https://travis-ci.org/Swarchal/TISS.svg?branch=master)](https://travis-ci.org/Swarchal/TISS)
 
 Titration-invariant similarity score (TISS)
 ============================================
