@@ -62,14 +62,14 @@ trim_cor <- function(x, y, n, p){
   # right shift from 1 to n
   for (i in 1:n){
     x_tmp <- head(x, - i * p)
-    y_tmp <- tail(y, -i * p)
+    y_tmp <- tail(y, - i * p)
     cor_measurements[n + 1 + i] <- cor(x_tmp, y_tmp)
   }
   
   # name of shift in vector of correlation values
   names(cor_measurements)[1:n] <- paste("-", n:1)
   names(cor_measurements)[n + 1] <- 0
-  names(cor_measurements)[(n + 2):length(cor_measurements)] <- paste("+", 1:n)
+  names(cor_measurements)[(n + 2):length(cor_measurements)] <- paste('+', 1:n)
 
   # create class for plot_trim_cor
   class(cor_measurements) <- "cor_vector"
