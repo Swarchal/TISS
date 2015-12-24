@@ -25,8 +25,8 @@ rest of the vectors.
 # example data
 v <- seq(1, 10, 1)
 
-max_trim(a, '+2')
-max_trim(a, '-3')
-max_trim(a, '0')
+max_trim(v, '+2')
+max_trim(v, '-3')
+max_trim(v, '0')
 }
 
