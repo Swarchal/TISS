@@ -4,21 +4,19 @@
 \alias{calculate_d}
 \title{Calculates a vector of KS values for each compound}
 \usage{
-calculate_d(cmpd, neg, vectorise = TRUE)
+calculate_d(cmpd, neg)
 }
 \arguments{
 \item{cmpd}{list}
 
 \item{neg}{dataframe or matrix}
-
-\item{vectorise}{boolean, whether to return a vector per compound}
+}
+\value{
+D_values Dataframe
 }
 \description{
 Given a dataframe for the negative control and a list of dataframes for each
 compound and concentration, this will calculate a signed D-statistic from a
-KS test for each feature (per compound and concentration). If
-\code{vectorise} is TRUE, then will collapse the concentration vectors and
-return a single vector per compound. If \code{z_score} is true, then the
-returned values will be normalised per compound into z-scores.
+KS test for each feature (per compound and concentration).
 }
 
