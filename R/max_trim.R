@@ -58,7 +58,7 @@ max_trim <- function(vector, max_shift){
                 vector_out <- head(vector, - numbers)
             } else if (split_shift[1] == '-'){
                 vector_out <- tail(vector, - numbers)
-            } else stop("max_shift should started with a sign (+/-) or be '0'")
+            } else stop("max_shift should start with a sign (+/-) or be '0'")
             
     }
     return(vector_out)
