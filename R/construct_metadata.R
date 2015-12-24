@@ -32,6 +32,8 @@ construct_metadata <- function(df, compound_col, conc_col, feature_cols, negativ
                      concentrations = concentrations,
                      feature_cols = feature_cols,
                      negative_control = negative_control)
+
+    class(metadata) <- "metadata"
     
     return(metadata)
 }

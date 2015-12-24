@@ -14,6 +14,9 @@
 
 get_compound_data <- function(df, metadata){
     
+    if (class(metadata) != "metadata"){
+        stop("metadata has to be of the class 'metadata'")
+    }
     if (!is.data.frame(df)) stop("df has to be a dataframe")
     if (!is.list(metadata)) stop("metadata has to be a list")
     
