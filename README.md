@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Swarchal/TISS.svg?branch=master)](https://travis-ci.org/Swarchal/TISS)
+[![codecov.io](https://codecov.io/github/swarchal/tiss/coverage.svg?branch=master)](https://codecov.io/github/swarchal/tiss?branch=master)
 
 Titration-invariant similarity score (TISS)
 ============================================
