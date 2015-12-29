@@ -1,5 +1,3 @@
-source("ks_test.R")
-
 context("Check signed KS test works")
 
 test_that("signed ks_test",{
