@@ -25,4 +25,5 @@ test_that("max_trim returns meaningful errors",{
     expect_error(max_trim(v, 1))
     expect_error(max_trim(v, "1"))
     expect_error(max_trim(4, '+1'))
+    expect_error(max_trim(list(v), '+1'))
 })
