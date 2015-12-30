@@ -40,7 +40,7 @@ max_trim <- function(vector, max_shift){
     if (!is.vector(vector)){
         stop("vector needs to be a vector ...")
     }
-    if (length(vector) >= 2){
+    if (length(vector) < 2){
         stop("vector needs to be at least two elements")
     }
     
