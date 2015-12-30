@@ -3,9 +3,9 @@ context("function test for scale_d")
 set.seed(12321)
 
 df <- data.frame(
-    a = rnorm(100),
-    b = rnorm(100),
-    c = rnorm(100))
+    a = rnorm(100, 10, 1),
+    b = rnorm(100, 10, 4),
+    c = rnorm(100, 10, 10))
 
 out <- scale_d(df)
 out_mat <- scale_d(as.matrix(df))
