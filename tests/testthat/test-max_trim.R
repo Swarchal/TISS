@@ -20,3 +20,9 @@ test_that("max trim returns expected answer",{
 test_that("max_trim(x, 0) returns x",{
     expect_equal(max_trim(v, '0'), v)
 })
+
+test_that("max_trim returns meaningful errors",{
+    expect_error(max_trim(v, 1))
+    expect_error(max_trim(v, "1"))
+    expect_error(max_trim(4, '+1'))
+})

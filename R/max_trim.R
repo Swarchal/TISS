@@ -39,7 +39,10 @@ max_trim <- function(vector, max_shift){
     }
     if (!is.vector(vector)){
         stop("vector needs to be a vector ...")
-    }	
+    }
+    if (length(vector) >= 2){
+        stop("vector needs to be at least two elements")
+    }
     
     # if vector is just 0, then return the vecto as-is without trimming
     if (max_shift == '0'){
