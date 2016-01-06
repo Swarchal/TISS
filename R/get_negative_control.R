@@ -19,8 +19,8 @@ get_negative_control <- function(df, metadata){
     if(!is.data.frame(df)) stop("df has to be a dataframe")
     if(!is.list(metadata)) stop("metadata has to be a list")
     
-    df_subset <- df[metadata$feature_cols,
-                    metadata$compounds == metadata$negative_control]
+    df_subset <- df[(df[, metadata$compound_col] == metadata$negative_control),
+                    metadata$feature_cols]
     
     return(df_subset)
 }
