@@ -17,7 +17,7 @@ construct_metadata <- function(df, compound_col, conc_col, feature_cols, negativ
     
     # check input
     if(!is.data.frame(df)) stop("df needs to be a dataframe")
-    if(!is.vector(compound_col)) stop("compounds_col needs to be a vector of compound names")
+    if(!is.vector(compound_col)) stop("compound_col needs to be a vector of compound names")
     if(!is.vector(conc_col)) stop("conc_col needs to be a vector of numeric concentration values")
     if(!is.numeric(feature_cols)) stop("feature_cols needs to be a numeric vector")
     if(!is.character(negative_control)) stop("negative_control needs to be a character string")
