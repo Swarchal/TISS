@@ -19,11 +19,14 @@ get_compound_data <- function(df, metadata){
     }
     if (!is.data.frame(df)) stop("df has to be a dataframe")
     if (!is.list(metadata)) stop("metadata has to be a list")
+
+    # remove negative control data
+    df_no_n_cntl <- df[!df[, metadata$compound_col] == metadata$negative_control, ]
     
     # construct list of list of dataframes
     
     # list of compounds
-    split_by_compound <- split(df, metadata$compounds)
+    split_by_compound <- split(df_no_n_cntl, metadata$compounds)
     # each element 'compound' contains list of dataframes for each concentration
     split_all <- sapply(split_by_compound, split, f = metadata$concentrations)
     
