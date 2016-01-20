@@ -21,7 +21,7 @@ get_compound_data <- function(df, metadata){
     if (!is.list(metadata)) stop("metadata has to be a list")
 
     # remove negative control data
-    df_no_n_cntl <- df[!df[, metadata$compound_col] == metadata$negative_control, ]
+    df_no_n_cntl <- df[df[, metadata$compound_col] != metadata$negative_control, ]
     
     # construct list of list of dataframes
     
