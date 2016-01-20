@@ -24,6 +24,14 @@ construct_metadata <- function(df, compound_col, conc_col, feature_cols, negativ
     all_compounds <- unique(df[, compound_col])
     compounds <- all_compounds[! all_compounds %in% negative_control]
     concentrations <- unique(df[, conc_col])
+
+    # warning message if any compound or concentration are NA
+    if (sum(is.na(all_compounds)) > 0){
+        warning("compound list contains NAs")
+    }
+    if (sum(is.na(concentrations)) > 0){
+        warning("concentration list contains NAs")
+    }
     
     # construct list of metadata
     metadata <- list(compounds = compounds,
