@@ -34,7 +34,7 @@ calculate_d <- function(cmpd, neg){
     # should give a vector of values for each compound-concentration
     D_values_pre <- sapply(cmpd, function(x) lapply(x, ks_cols, g = neg))
 
-    D_values <- apply(d_out, 2, unlist)
+    D_values <- apply(D_values_pre, 2, unlist)
     
     return(D_values)
 }
