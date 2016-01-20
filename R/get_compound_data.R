@@ -32,9 +32,9 @@ get_compound_data <- function(df, metadata){
     }
 
     # remove rows where compound == NA
-    df_no_na_ <- df_no_n_cntl[ df_no_n_cntl[, metadata$compound_col] != NA, ]
+    df_no_na_ <- df[ !is.na(df[, metadata$concentration_col]), ]
     # remove rows where concentration == NA
-    df_no_na <- df_no_na_[ df_no_na_[, metadata$concentration_col] != NA, ]
+    df_no_na <- df_no_na_[ !is.na(df_no_na_[, metadata$compound_col]), ]
     
     # list of compounds
     split_by_compound <- split(df_no_na, metadata$compounds)
