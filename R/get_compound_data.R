@@ -23,10 +23,21 @@ get_compound_data <- function(df, metadata){
     # remove negative control data
     df_no_n_cntl <- df[df[, metadata$compound_col] != metadata$negative_control, ]
     
-    # construct list of list of dataframes
+    # remove compounds and concentrations that are NAs
+    if (sum(is.na(metadata$compounds)) > 0){
+        warning("Removing NA compound data")
+    }
+    if (sum(is.na(metadata$concentrations)) > 0){
+        warning("Removing NA concentration data")
+    }
+    
+    # remove rows where compound == NA
+    df_no_na_ <- df_no_n_cntl[ df_no_n_cntl[, metadata$compound_col] =! NA, ]
+    # remove rows where concentration == NA
+    df_no_na <- df_no_na_[ df_no_na_[, metadata$concentration_col] =! NA, ]
     
     # list of compounds
-    split_by_compound <- split(df_no_n_cntl, metadata$compounds)
+    split_by_compound <- split(df_no_na, metadata$compounds)
     # each element 'compound' contains list of dataframes for each concentration
     split_all <- sapply(split_by_compound, split, f = metadata$concentrations)
     
