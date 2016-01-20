@@ -35,11 +35,21 @@ get_compound_data <- function(df, metadata){
     df_no_na_ <- df[ !is.na(df[, metadata$concentration_col]), ]
     # remove rows where concentration == NA
     df_no_na <- df_no_na_[ !is.na(df_no_na_[, metadata$compound_col]), ]
+
+    # remove compound which contained NA values
+    # get compounds with no NAs
+    has_NA <- df[ is.na(df[, metadata$concentration_col]), ]
+    NA_cmpd <- unique(has_NA[, metadata$compound_col])
+    compounds_full <- metadata$compounds[!metadata$compounds %in% NA_cmpd]
+    df_full <- df_no_na[ df_no_na[, metadata$compound_col] %in% compounds_full, ]
+    
+    # remove NA from concentrations if present
+    concentrations_full <- metadata$concentrations[!is.na(metadata$concentrations)]
     
     # list of compounds
-    split_by_compound <- split(df_no_na, metadata$compounds)
+    split_by_compound <- split(df_no_na, compounds_full)
     # each element 'compound' contains list of dataframes for each concentration
-    split_all <- sapply(split_by_compound, split, f = metadata$concentrations)
+    split_all <- sapply(split_by_compound, split, f = concentrations_full)
     
     # subset featuredata
     split_featuredata <- sapply(split_all, '[', metadata$feature_cols)
