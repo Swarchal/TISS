@@ -14,7 +14,7 @@
 scale_d <- function(d_table){
     
     if (!is.matrix(d_table) && !is.data.frame(d_table)){
-        stop("d_table needs to be a matrix of a dataframe")
+        stop("d_table needs to be a matrix or a dataframe")
     }
     
     z_out <- apply(d_table, 2, zscore)
