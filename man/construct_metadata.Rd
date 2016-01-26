@@ -9,18 +9,39 @@ construct_metadata(df, compound_col, conc_col, feature_cols, negative_control)
 \arguments{
 \item{df}{Dataframe}
 
-\item{compound_col}{index or name of dataframe column}
+\item{compound_col}{index or name of dataframe column for compound names}
 
-\item{conc_col}{index or name of dataframe column}
+\item{conc_col}{index or name of dataframe column for concentration data}
 
-\item{feature_cols}{Vector of indices that match numeric feature columns}
+\item{feature_cols}{Vector of indices that match numeric feature columns.
+a feature column is one that contains numerical information of a cellular
+measurement such as area, or cell_count. Metadata such as image_number or
+object_number_ID is not feature data.}
 
-\item{negative_control}{string, name of negative control in compound_col}
+\item{negative_control}{string, name of negative control in compound_col.
+e.g \code{'DMSO'}}
 }
 \value{
-metadata list containing all metadata
+metadata List containing all metadata.
 }
 \description{
-Creates a list containing all necessary metadata to subset a dataframe
+Creates a list containing all necessary metadata to subset a dataframe.
+Used within other functions as a useful container and stops repeated
+input of dataframe information.
+}
+\examples{
+# construct example dataframe
+concentration <- rep(c(100, 10, 1, 0.1), 10)
+compounds <- sort(rep(letters[1:10], 4))
+cell_area <- rnorm(40)
+no_speckles <- rnorm(40, 100, 100)
+df <- data.frame(compounds, concentration, cell_area, speckles)
+
+construct_metadata(
+    df,
+    compound_col = "compounds",
+    conc_col = "concentration",
+    feature_cols = 3:4,
+    negative_control = "a")
 }
 
