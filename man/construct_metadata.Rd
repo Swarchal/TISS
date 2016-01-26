@@ -35,7 +35,7 @@ concentration <- rep(c(100, 10, 1, 0.1), 10)
 compounds <- sort(rep(letters[1:10], 4))
 cell_area <- rnorm(40)
 no_speckles <- rnorm(40, 100, 100)
-df <- data.frame(compounds, concentration, cell_area, speckles)
+df <- data.frame(compounds, concentration, cell_area, no_speckles)
 
 construct_metadata(
     df,
