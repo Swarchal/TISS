@@ -21,7 +21,7 @@ get_compound_data <- function(df, metadata){
     if (!is.list(metadata)) stop("metadata has to be a list")
 
     # remove negative control data
-    df_no_n_cntl <- df[df[, metadata$compound_col] != metadata$negative_control, ]
+    not_control <- setdiff(metadata$compounds, metadata$negative_control)
     
     # remove compounds and concentrations that are NAs
     if (sum(is.na(metadata$compounds)) > 0){
@@ -44,15 +44,15 @@ get_compound_data <- function(df, metadata){
     df_full <- df_no_na[ df_no_na[, metadata$compound_col] %in% compounds_full, ]
     
     # remove NA from concentrations if present
-    concentrations_full <- metadata$concentrations[!is.na(metadata$concentrations)]
+    conc_full <- metadata$concentrations[!is.na(metadata$concentrations)]
+
+    # warnings are due to missing factors of removed negative control
+    # TODO: drop factors on compound data
+    df_split <- suppressWarnings(split(df_full, not_control))
+    df_split2 <- suppressWarnings(lapply(df_split, function(x) split(x, conc_full)))
+
+    # remove everything except featuredata
+    df_out <- lapply(df_split2, function(x) lapply(x, '[', metadata$feature_cols))
     
-    # list of compounds
-    split_by_compound <- split(df_no_na, compounds_full)
-    # each element 'compound' contains list of dataframes for each concentration
-    split_all <- sapply(split_by_compound, split, f = concentrations_full)
-    
-    # subset featuredata
-    split_featuredata <- sapply(split_all, '[', metadata$feature_cols)
-    
-    return(split_featuredata)
+
 }
