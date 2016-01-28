@@ -4,7 +4,7 @@
 \alias{trim_cor}
 \title{Calculates correlation of shifted vectors}
 \usage{
-trim_cor(x, y, n, p)
+trim_cor(x, y, n = NULL, p = NULL, metadata = NULL)
 }
 \arguments{
 \item{x}{vector}
@@ -12,11 +12,15 @@ trim_cor(x, y, n, p)
 \item{y}{vector}
 
 \item{n}{integer. The number of titrations shifts in either directions. i.e 
-\code{n = 2} will shift 2 titrations to the left, and 2 to the right.}
+\code{n = 2} will shift 2 titrations to the left, and 2 to the right. If n
+is not directly given, then it will be calculated from by half the number of
+concentrations in the metadata (to the nearest integer).}
 
 \item{p}{interger. The number of features. \code{n} will always be a multiple
 of \code{p}. This is so identical features are always aligned despite
 titration shifts.}
+
+\item{metadata}{}
 }
 \value{
 cor_measurements vector of correlations for each shift

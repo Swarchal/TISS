@@ -8,10 +8,13 @@
 #' @param x vector
 #' @param y vector
 #' @param n integer. The number of titrations shifts in either directions. i.e 
-#'   \code{n = 2} will shift 2 titrations to the left, and 2 to the right.
+#'   \code{n = 2} will shift 2 titrations to the left, and 2 to the right. If n
+#'   is not directly given, then it will be calculated from by half the number of
+#'   concentrations in the metadata (to the nearest integer).
 #' @param p interger. The number of features. \code{n} will always be a multiple
 #'   of \code{p}. This is so identical features are always aligned despite
 #'   titration shifts.
+#' @param metadata 
 #'
 #' @return cor_measurements vector of correlations for each shift
 #' 
@@ -42,38 +45,55 @@
 #'  lines(trim_cor(df[,1], df[,i], 20, 3), col = "gray50")
 #' }
 
-trim_cor <- function(x, y, n, p){
-
-  cor_measurements <- vector(length = 2 * n + 1)
-  
-  # left shift from -n to -1
-  for (i in n:1){
-    x_tmp <- tail(x, - i * p)
-    y_tmp <- head(y, - i * p)
-    cor_measurements[i] <- cor(x_tmp, y_tmp)
-  }
-  # reverse measurements so that they are in the correct order
-  # going from -n -> 0 -> +n
-  cor_measurements[1:n] <- rev(cor_measurements[1:n])
-  
-  # cor of unshifted x and y
-  cor_measurements[n + 1] <- cor(x, y)
-  
-  # right shift from 1 to n
-  for (i in 1:n){
-    x_tmp <- head(x, - i * p)
-    y_tmp <- tail(y, - i * p)
-    cor_measurements[n + 1 + i] <- cor(x_tmp, y_tmp)
-  }
-  
-  # name of shift in vector of correlation values
-  names(cor_measurements)[1:n] <- paste("-", n:1)
-  names(cor_measurements)[n + 1] <- 0
-  names(cor_measurements)[(n + 2):length(cor_measurements)] <- paste('+', 1:n)
-
-  # create class for plot_trim_cor
-  class(cor_measurements) <- "cor_vector"
-  
-  return(cor_measurements)
-  
+trim_cor <- function(x, y, n = NULL, p = NULL, metadata = NULL){
+    
+    if (!is.null(metadata)){
+        # check if given metadta that it's a valid metadata object
+        if (class(metadata) != 'metadata'){
+            stop("Metadata has to be a metadata object calculated by 'construct_metata()'")
+        }
+        # calculate n and p from the metadata
+        n <- as.integer(length(metadata$concentrations) / 2)
+        p <- length(metadata$feature_cols)
+        
+    }
+    
+    if (!is.null(n) && !is.null(p)){
+        # use the values given
+        n <- n
+        p <- p
+    }
+    
+    cor_measurements <- vector(length = 2 * n + 1)
+    
+    # left shift from -n to -1
+    for (i in n:1){
+        x_tmp <- tail(x, - i * p)
+        y_tmp <- head(y, - i * p)
+        cor_measurements[i] <- cor(x_tmp, y_tmp)
+    }
+    # reverse measurements so that they are in the correct order
+    # going from -n -> 0 -> +n
+    cor_measurements[1:n] <- rev(cor_measurements[1:n])
+    
+    # cor of unshifted x and y
+    cor_measurements[n + 1] <- cor(x, y)
+    
+    # right shift from 1 to n
+    for (i in 1:n){
+        x_tmp <- head(x, - i * p)
+        y_tmp <- tail(y, - i * p)
+        cor_measurements[n + 1 + i] <- cor(x_tmp, y_tmp)
+    }
+    
+    # name of shift in vector of correlation values
+    names(cor_measurements)[1:n] <- paste("-", n:1)
+    names(cor_measurements)[n + 1] <- 0
+    names(cor_measurements)[(n + 2):length(cor_measurements)] <- paste('+', 1:n)
+    
+    # create class for plot_trim_cor
+    class(cor_measurements) <- "cor_vector"
+    
+    return(cor_measurements)
+    
 }
