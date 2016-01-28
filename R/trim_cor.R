@@ -55,7 +55,6 @@ trim_cor <- function(x, y, n = NULL, p = NULL, metadata = NULL){
         # calculate n and p from the metadata
         n <- as.integer(length(metadata$concentrations) / 2)
         p <- length(metadata$feature_cols)
-        
     }
     
     if (!is.null(n) && !is.null(p)){

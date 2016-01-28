@@ -35,3 +35,9 @@ test_that('trim cor can use values from metadata',{
 
     expect_is(trim_cor(x = a, y = b, metadata = metadata), 'cor_vector')
 })
+
+test_that('trim_cor with metadata only works if actual metadata',{
+    fake_metadata <- list(concentrations = c(1, 2, 3, 4),
+                          feature_cols = 3:10)
+    expect_error(trim_cor(a, b, metadata = fake_metadata))
+})
