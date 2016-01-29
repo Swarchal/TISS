@@ -13,9 +13,9 @@ test_that("returns expected output",{
 	out_col <- loo_cor(iris[, 1:4], 2)
 	expect_equal(length(out_col), 4)
 
-	expect_is(out_row, 'vector')
+	expect_is(out_row, 'numeric')
 
 	expected <- c(0.894, -0.348,  0.863,  0.921)
-	expect_equal(out_row, expected, tolerance = 1e-3)
+	expect_equal(out_col, expected, tolerance = 1e-3)
 })
 
