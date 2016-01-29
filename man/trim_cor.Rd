@@ -20,7 +20,9 @@ concentrations in the metadata (to the nearest integer).}
 of \code{p}. This is so identical features are always aligned despite
 titration shifts.}
 
-\item{metadata}{}
+\item{metadata}{optional metadata object produced from
+\code{construct_metadata}. Used to extract values for n and p
+if none are given.}
 }
 \value{
 cor_measurements vector of correlations for each shift

@@ -14,7 +14,9 @@
 #' @param p interger. The number of features. \code{n} will always be a multiple
 #'   of \code{p}. This is so identical features are always aligned despite
 #'   titration shifts.
-#' @param metadata 
+#' @param metadata optional metadata object produced from
+#'     \code{construct_metadata}. Used to extract values for n and p
+#'     if none are given.
 #'
 #' @return cor_measurements vector of correlations for each shift
 #' 
@@ -50,7 +52,7 @@ trim_cor <- function(x, y, n = NULL, p = NULL, metadata = NULL){
     if (!is.null(metadata)){
         # check if given metadta that it's a valid metadata object
         if (class(metadata) != 'metadata'){
-            stop("Metadata has to be a metadata object calculated by 'construct_metata()'")
+            stop("Metadata has to be a metadata object calculated by 'construct_metadata()'")
         }
         # calculate n and p from the metadata
         n <- as.integer(length(metadata$concentrations) / 2)
