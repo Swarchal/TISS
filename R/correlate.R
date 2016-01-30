@@ -55,7 +55,7 @@ trim_cor_ <- function(x, y, n, p){
 #' shifted by a number of titrations in both directions. This is to align
 #' compound vectors invariant of differing potencies.
 #'
-#' @param x Matrix or dataframe of compound vectors. Each row representing
+#' @param x Matrix or dataframe of compound vectors. Each column representing
 #'    an individual compound vector
 #' @param metadata corresponding metadata for x, produced by
 #'   \code{construct_metadata}
@@ -73,16 +73,16 @@ correlate <- function(x, metadata){
 	n <- as.integer(length(metadata$concentrations) / 2)
     p <- length(metadata$feature_cols)
 
-	# 2. initialise somewhere to store optimal shifts for each row
-	out_list <- vector('list', length = nrow(x))
+	# 2. initialise somewhere to store optimal shifts for each col
+	out_list <- vector('list', length = ncol(x))
 
-	# 3. main loop for each row in x
-	for (row in 1:nrow(x)){
+	# 3. main loop for each column in x
+	for (col in 1:ncol(x)){
 
-		tmp <- as.numeric(x[row, ])
-		rest <- x[-row, ]
-		av_rest <- as.numeric(colMeans(rest))
-		out_list[[row]] <- trim_cor_(
+		tmp <- as.numeric(x[, col])
+		rest <- x[, -col]
+		av_rest <- as.numeric(rowMeans(rest))
+		out_list[[col]] <- trim_cor_(
 			x = tmp,
 			y = av_rest,
 			n = n,

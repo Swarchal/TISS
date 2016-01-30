@@ -3,3 +3,4 @@
 .RData
 TISS.Rproj
 R/_testTISS.R
+tests/testthat/Rplots.pdf

@@ -7,7 +7,7 @@
 correlate(x, metadata)
 }
 \arguments{
-\item{x}{Matrix or dataframe of compound vectors. Each row representing
+\item{x}{Matrix or dataframe of compound vectors. Each column representing
 an individual compound vector}
 
 \item{metadata}{corresponding metadata for x, produced by
