@@ -8,9 +8,10 @@ correlate(x, metadata)
 }
 \arguments{
 \item{x}{Matrix or dataframe of compound vectors. Each column representing
-an individual compound vector}
+an individual compound vector. This should have been produced by}
 
-\item{metadata}{corresponding metadata for x, produced by
+\item{metadata}{corresponding metadata for x, produced by \code{calculate_d}
+and scaled with \code{scale_d}
 \code{construct_metadata}}
 }
 \value{

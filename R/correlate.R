@@ -56,8 +56,9 @@ trim_cor_ <- function(x, y, n, p){
 #' compound vectors invariant of differing potencies.
 #'
 #' @param x Matrix or dataframe of compound vectors. Each column representing
-#'    an individual compound vector
-#' @param metadata corresponding metadata for x, produced by
+#'    an individual compound vector. This should have been produced by 
+#' @param metadata corresponding metadata for x, produced by \code{calculate_d}
+#'   and scaled with \code{scale_d}
 #'   \code{construct_metadata}
 #' @return List of correlation measurements, each element of the list
 #'   corresponds to a compound vector in the order given by \code{x}
@@ -71,7 +72,7 @@ correlate <- function(x, metadata){
 	}
 
 	n <- as.integer(length(metadata$concentrations) / 2)
-    p <- length(metadata$feature_cols)
+	p <- length(metadata$feature_cols)
 
 	# 2. initialise somewhere to store optimal shifts for each col
 	out_list <- vector('list', length = ncol(x))
@@ -89,5 +90,7 @@ correlate <- function(x, metadata){
 			p = p)
 	}
 
+	# name elements of list with compound names
+	names(out_list) <- colnames(x)
 	return(out_list)
 }
