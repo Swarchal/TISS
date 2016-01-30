@@ -71,7 +71,7 @@ correlate <- function(x, metadata){
 		stop("Metadata has to be a metadata object calculated by 'construct_metadata()'")
 	}
 
-	n <- as.integer(length(metadata$concentrations) / 2)
+	n <- as.integer(length(metadata$concentrations) / 3)
 	p <- length(metadata$feature_cols)
 
 	# 2. initialise somewhere to store optimal shifts for each col
