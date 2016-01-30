@@ -60,12 +60,16 @@ trim_cor_ <- function(x, y, n, p){
 #' @param metadata corresponding metadata for x, produced by \code{calculate_d}
 #'   and scaled with \code{scale_d}
 #'   \code{construct_metadata}
+#' @param return_max Boolean. If \code{TRUE}, then will only return the shift
+#'   that produced the maxmimum correlation. If \code{return_max = FALSE}, it
+#'   will return all shifts and their associated correlations.
+#'
 #' @return List of correlation measurements, each element of the list
 #'   corresponds to a compound vector in the order given by \code{x}
 #'
 #' @export
 
-correlate <- function(x, metadata){
+correlate <- function(x, metadata, return_max = TRUE){
 
 	if (class(metadata) != 'metadata'){
 		stop("Metadata has to be a metadata object calculated by 'construct_metadata()'")
@@ -92,5 +96,9 @@ correlate <- function(x, metadata){
 
 	# name elements of list with compound names
 	names(out_list) <- colnames(x)
-	return(out_list)
+	if (return_max){
+		out <- lapply(out_list, max_shift)
+	} else out <- out_list
+
+	return(out)
 }

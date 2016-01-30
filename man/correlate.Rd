@@ -4,7 +4,7 @@
 \alias{correlate}
 \title{Calculates correlation between vectors shifted by titrations.}
 \usage{
-correlate(x, metadata)
+correlate(x, metadata, return_max = TRUE)
 }
 \arguments{
 \item{x}{Matrix or dataframe of compound vectors. Each column representing
@@ -13,6 +13,10 @@ an individual compound vector. This should have been produced by}
 \item{metadata}{corresponding metadata for x, produced by \code{calculate_d}
 and scaled with \code{scale_d}
 \code{construct_metadata}}
+
+\item{return_max}{Boolean. If \code{TRUE}, then will only return the shift
+that produced the maxmimum correlation. If \code{return_max = FALSE}, it
+will return all shifts and their associated correlations.}
 }
 \value{
 List of correlation measurements, each element of the list
