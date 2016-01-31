@@ -4,7 +4,7 @@
 \alias{expand_grid_unique}
 \title{Unique combination of two vectors}
 \usage{
-expand_grid_unique(x, y, include.equals = TRUE)
+expand_grid_unique(x, y, include.equals = FALSE)
 }
 \arguments{
 \item{x}{Vector}

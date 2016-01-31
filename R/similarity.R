@@ -23,13 +23,15 @@ euclid_dist <- function(a, b,...){
 #'
 #' @return dataframe
 #'
+#' @export
+#'
 #' @examples
 #' x <- c('one', 'two', 'three')
 #' y <- c('a', 'b', 'c')
 #' 
 #' expand_grid_unique(x, y)
 
-expand_grid_unique <- function(x, y, include.equals = TRUE){
+expand_grid_unique <- function(x, y, include.equals = FALSE){
     x <- unique(x)
     y <- unique(y)
     
