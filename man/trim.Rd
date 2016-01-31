@@ -4,7 +4,7 @@
 \alias{trim}
 \title{Trim compound vectors}
 \usage{
-trim(x, max)
+trim(x, max, metadata)
 }
 \arguments{
 \item{x}{a scaled compound vector produced from \code{scale_d()}}

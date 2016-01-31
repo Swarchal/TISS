@@ -25,12 +25,4 @@ Given a vector, this function will trim it according to the output from
 rest of the vectors. \code{max_trim} will trim the vectors by a multiple
 of the number of features extracted from \code{metadata}.
 }
-\examples{
-# example data
-v <- seq(1, 10, 1)
-
-max_trim(v, '+2')
-max_trim(v, '-3')
-max_trim(v, '0')
-}
 

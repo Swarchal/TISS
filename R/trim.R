@@ -12,7 +12,11 @@
 #' @export
 #'
 
-trim <- function(x, max){
+trim <- function(x, max, metadata){
+
+	if (class(metadata) != 'metadata'){
+		stop("metadata needs to be a metadata object")
+	}
 
 	# initialise list for results and set names
 	out_trimmed <- vector('list', length = ncol(x))
@@ -27,7 +31,7 @@ trim <- function(x, max){
 
 	# trim vector in x according to result from max
 	for (i in 1:ncol(x)){
-		out_trimmed[[i]] <- max_trim(x[, i], max[[i]])
+		out_trimmed[[i]] <- max_trim(x[, i], max[[i]], metadata = metadata)
 	}
 
 	return(out_trimmed)

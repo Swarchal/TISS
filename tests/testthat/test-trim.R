@@ -20,12 +20,12 @@ d_scale <- scale_d(d_out)
 out <- correlate(d_scale, metadata)
 out_full <- correlate(d_scale, metadata, return_max = FALSE)
 
-ans <- trim(d_scale, out)
+ans <- trim(d_scale, out, metadata = metadata)
 
 test_that("trim returns expected values",{
     expect_equal(length(ans), length(metadata$compounds))
     expect_true(class(ans) == 'list')
     expect_true(class(ans[[1]]) == 'numeric')
     expect_equal(names(ans), colnames(d_scale))
-    expect_error(trim(d_scale, out_full))
+    expect_error(trim(d_scale, out_full, metadata))
 })
