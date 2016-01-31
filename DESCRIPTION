@@ -7,7 +7,7 @@ Description: R implementation of Perlman et al's titration invariant similarity
     for differing potencies.
 Depends: 
     R (>= 3.2.1)
-License: GPL3
+License: GPL-3
 LazyData: true
 RoxygenNote: 5.0.1
 Suggests: testthat
