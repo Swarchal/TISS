@@ -19,7 +19,7 @@ devtools::install_github('Swarchal/TISS')
 
 ## Workflow
 
-An typical workflow using the example dataset provided:
+**A typical workflow using the example dataset provided:**
 
 
 Construct a metadata object and parse the data:
@@ -73,5 +73,13 @@ nocodazole   6.122251 5.141940     4.590035  5.190964 5.566783 4.579403   0.0000
 saracatinib  6.705706 4.825882     5.754696  4.999944 6.988628 4.705102   5.995406    0.000000                  
 SN38         5.523525 5.918995     5.560406  6.061008 4.905090 5.714413   5.605970    7.044819 0.000000         
 STS          6.022998 5.926852     5.945048  5.715045 5.687065 5.948143   6.110516    6.185883 5.898727 0.000000
+
+```
+
+**There is also a wrapper function:**
+
+```r
+
+tiss(ex_data, metadata)
 
 ```
