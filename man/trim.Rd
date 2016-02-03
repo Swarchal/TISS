@@ -11,6 +11,8 @@ trim(x, max, metadata)
 
 \item{max}{a list of maximum shifts, produced by the output from
 \code{correlate} and \code{max_shift}}
+
+\item{metadata}{metadata object created by \code{construct_metadata}}
 }
 \value{
 a list of trimmed compound vectors

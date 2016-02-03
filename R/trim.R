@@ -7,6 +7,7 @@
 #' @param x a scaled compound vector produced from \code{scale_d()}
 #' @param max a list of maximum shifts, produced by the output from
 #'   \code{correlate} and \code{max_shift}
+#' @param metadata metadata object created by \code{construct_metadata}
 #' @return a list of trimmed compound vectors
 #'
 #' @export
