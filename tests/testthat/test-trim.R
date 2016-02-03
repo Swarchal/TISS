@@ -29,3 +29,51 @@ test_that("trim returns expected values",{
     expect_equal(names(ans), colnames(d_scale))
     expect_error(trim(d_scale, out_full, metadata))
 })
+
+
+tiss <- function(data, metadata, align = TRUE, ...){
+    
+    compound_data <- get_compound_data(data, metadata)
+    negative_control <- get_negative_control(data, metadata)
+    d_out <- calculate_d(compound_data, negative_control)
+    d_scale <- scale_d(out)
+    
+    if (align){
+        
+        out <- correlate(d_scale, metadata)
+        ans <- trim(d_scale, out, metadata = metadata)
+        sim_out <- similarity_list(ans, ...)
+        
+    } else{
+        
+        sim_out <- similarity_df(d_scale, ...)
+        
+    }
+    
+    
+    return(sim_out)
+}
+
+data(ex_data)
+
+metadata <- construct_metadata(ex_data,
+                               compound_col = 'Metadata_compound',
+                               conc_col = 'Metadata_concentration',
+                               feature_cols = 2:68,
+                               negative_control = "DMSO")
+
+
+compound_data <- get_compound_data(ex_data, metadata)
+
+negative_control <- get_negative_control(ex_data, metadata)
+
+d_out <- calculate_d(compound_data, negative_control)
+
+d_scale <- scale_d(d_out)
+
+out <- correlate(d_scale, metadata)
+
+ans <- trim(d_scale, out, metadata = metadata)
+
+    
+similarity_list(ans)
