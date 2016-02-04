@@ -1,6 +1,6 @@
 context("tiss works")
 
-data(exdata)
+data(ex_data)
 
 metadata <- construct_metadata(ex_data,
                                compound_col = 'Metadata_compound',
