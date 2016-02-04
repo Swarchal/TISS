@@ -18,8 +18,8 @@
 
 tiss <- function(data, metadata, align = TRUE){
 
-	compound_data <- get_compound_data(ex_data, metadata)
-	negative_control <- get_negative_control(ex_data, metadata)
+	compound_data <- get_compound_data(data, metadata)
+	negative_control <- get_negative_control(data, metadata)
 	d_out <- calculate_d(compound_data, negative_control)
 	d_scale <- scale_d(d_out)
 
