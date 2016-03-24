@@ -1,4 +1,4 @@
-context("testing trim()")
+context("trim")
 
 data(ex_data)
 
@@ -21,6 +21,10 @@ out <- correlate(d_scale, metadata)
 out_full <- correlate(d_scale, metadata, return_max = FALSE)
 
 ans <- trim(d_scale, out, metadata = metadata)
+
+test_that("returns error when expected",{
+    expect_error(trim(d_scale, out, "metadata"))
+})
 
 test_that("trim returns expected values",{
     expect_equal(length(ans), length(metadata$compounds))
