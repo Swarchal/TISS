@@ -24,7 +24,7 @@ devtools::install_github('Swarchal/TISS')
 
 #### 1 Construct a metadata object and parse the data:
 
-This creates a metadata object that parses the dataframe, and stores information such as compounds, concentrations etc that are used in later functions, and saves inputting the same information as arguments to multoiple functions.
+This creates a metadata object that parses the dataframe, and stores information such as compounds, concentrations etc that are used in later functions, and saves inputting the same information as arguments to multiple functions.
 
 ```r
 data(ex_data)
@@ -44,7 +44,7 @@ negative_control <- get_negative_control(ex_data, metadata)
 
 #### 2 Then calculate the D-values and scale them via a z-score to get a numerical vector for each compound:
 
-D-values are calculated from a modified Kolmogorov-Smirnov test, and are essentially the greatest veritical distance from the empirical cumulative distribution curves between the compound and the control for each feature. They differ from standard KS values in that they are given a sign dependent on their position to the control distribution. Values shifted to the left (lower) are given a minus (-) sign, whereas values to the right (higher) are given a plus (+) sign.
+D-values are calculated from a modified Kolmogorov-Smirnov test, and are essentially the greatest vertical distance from the empirical cumulative distribution curves between the compound and the control for each feature. They differ from standard KS values in that they are given a sign dependent on their position to the control distribution. Values shifted to the left (lower) are given a minus (-) sign, whereas values to the right (higher) are given a plus (+) sign.
 
 This produces a long vector of D values for each compound. These numeric vectors are concatenated together from multiple concentrations.
 
@@ -56,7 +56,7 @@ d_out <- calculate_d(compound_data, negative_control)
 d_scale <- scale_d(d_out)
 ```
 
-#### 3 Align the compound vectors by maximimum correlation to account for differences in potency:
+#### 3 Align the compound vectors by maximum correlation to account for differences in potency:
 
 As compounds may produce similar fingerprints (or D-vectors), but at different concentrations, it is possible to align the vectors to one another to best reduce any differences in potencies. This is carried out by shifting the vectors by certain numbers of titrations and choosing the alignment that results in the highest correlation.
 
@@ -71,7 +71,7 @@ ans <- trim(d_scale, out, metadata = metadata)
 
 #### 4 Finally produce a TISS from the Euclidean distance between compound vectors:
 
-The TISS is simply the Eucliden distance between the compound fingerprints. These can then be clustered to identify similar/dissimilar compounds.
+The TISS is simply the Euclidean distance between the compound fingerprints. These can then be clustered to identify similar/dissimilar compounds.
 
 ```
 similarity_list(ans)
